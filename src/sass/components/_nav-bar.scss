@@ -1,0 +1,25 @@
+.nav-bar {
+  background-color: white;
+  padding: 0 20vw;
+  @include respond-to(md) {
+    padding: 0 10vw;
+  }
+  .instagram-logo {
+    &::after {
+      height: 100%;
+      content: '';
+      border-right: solid 1px black;
+      padding-left: 15px;
+    }
+  }
+  .brand-logo {
+    color: black;
+    font-family: 'Billabong';
+  }
+  #nav-mobile a {
+    color: black;
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}

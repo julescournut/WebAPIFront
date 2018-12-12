@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-import logo from '../../images/logo.svg';
+import logo from '../../assets/images/logo.svg';
 
 class About extends Component {
 

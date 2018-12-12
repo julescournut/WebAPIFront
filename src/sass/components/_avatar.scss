@@ -1,0 +1,17 @@
+.avatar-container {
+  display: flex;
+  flex-direction: row;
+  &__img {
+    max-height: 35px;
+    border-radius: 100%;
+  }
+  &__name {
+    font-weight: bold;
+    align-self: center;
+    color: black;
+    margin-left: 1em;
+  }
+}
+.card .card-content {
+  padding: 15px;
+}

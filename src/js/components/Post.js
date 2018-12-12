@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 
-import postImage from '../../images/sample-1.jpg';
+import Avatar from '../components/Avatar'
+import Comment from '../components/Comment'
+import InputComment from '../components/InputComment'
+import LikeBar from '../components/LikeBar'
 
 class Post extends Component {
 
     render() {
         return (
-            <div class="row">
-                <div class="col s12 m7">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src={postImage} />
-                                <span class="card-title">Card Title</span>
-                        </div>
-                        <div class="card-content">
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                                I am convenient because I require little markup to use effectively.</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="#">This is a link</a>
-                        </div>
-                    </div>
+            <div class="card">
+                <Avatar user={this.props.user} />
+                <div class="card-image post-img">
+                    <img src={this.props.imgURL} />
+                </div>
+                <div class="card-content comment-container">
+                    <LikeBar nbLike={this.props.nbLike} date={this.props.date}/>
+                    {this.props.comments.map((comment) => <Comment user={comment.user}
+                                                                   content={comment.content} />)}
+                    <InputComment/>
                 </div>
             </div>
         );

@@ -1,0 +1,30 @@
+.social-button-container {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100px;
+  margin: 0;
+  a {
+    color: black;
+    font-size: 25px;
+  }
+}
+
+.like-bar-container {
+  display: flex;
+  flex-direction: column;
+  &__inline-content {
+    display: inline-flex;
+    justify-content: space-between;
+  }
+}
+
+.like-counter {
+  color: black;
+  font-weight: bold;
+}
+
+.post-date {
+  text-transform: uppercase;
+  font-size: 11px;
+  color: gray;
+}

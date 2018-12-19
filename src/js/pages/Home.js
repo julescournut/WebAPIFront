@@ -19,7 +19,7 @@ const posts = [
                 },
                 content: 'Voici mon hamster Paul'
             },
-            {   
+            {
                 user: {
                     name: 'jcneboit',
                     avatar: 'https://yt3.ggpht.com/a-/ACSszfFWiPdKHdLmbneZ_93sWme_rWi7Y1gx8zwjEg=s900-mo-c-c0xffffffff-rj-k-no'
@@ -60,7 +60,7 @@ class Home extends Component {
         return (
             <div className="container post-container">
                 <div class="row">
-                    <div class="col s12 m7">
+                    <div class="col s12 m9">
 
                         {posts.map((post) => <Post imgURL={post.imgURL}
                                                    nbLike={post.nbLike}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import Post from '../components/Post'
+import PersonList from '../components/PersonList'
 
 const posts = [
     {
@@ -59,8 +60,9 @@ class Home extends Component {
     render() {
         return (
             <div className="container post-container">
-                <div class="row">
-                    <div class="col s12 m9">
+                <div className="row">
+                    <PersonList/>
+                    <div className="col s12 m9">
 
                         {posts.map((post) => <Post imgURL={post.imgURL}
                                                    nbLike={post.nbLike}

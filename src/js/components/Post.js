@@ -9,12 +9,12 @@ class Post extends Component {
 
     render() {
         return (
-            <div class="card">
+            <div className="card">
                 <Avatar user={this.props.user} />
-                <div class="card-image post-img">
+                <div className="card-image post-img">
                     <img src={this.props.imgURL} />
                 </div>
-                <div class="card-content comment-container">
+                <div className="card-content comment-container">
                     <LikeBar nbLike={this.props.nbLike} date={this.props.date}/>
                     {this.props.comments.map((comment) => <Comment user={comment.user}
                                                                    content={comment.content} />)}

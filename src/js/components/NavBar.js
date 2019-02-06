@@ -10,13 +10,13 @@ class NavBar extends Component {
             <div className="navbar-fixed">
                 <nav>
                     <div className="container nav-wrapper nav-bar navbar-fixed">
-                        <Link to="/"><a href="#" className="brand-logo">
+                        <Link to="/"><span className="brand-logo">
                             Instagramzz
                             <i className="fab fa-instagram instagram-logo"></i>
-                        </a></Link>
+                        </span></Link>
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
-                            <li><a href="#"><i className="far fa-bell"></i></a></li>
-                            <li><Link to="/profile"><a href="#"><i className="far fa-user"></i></a></Link></li>
+                            <li><Link to="/auth"><span><i className="far fa-bell"></i></span></Link></li>
+                            <li><Link to="/profile"><span><i className="far fa-user"></i></span></Link></li>
                         </ul>
                     </div>
                 </nav>

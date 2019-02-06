@@ -4,7 +4,7 @@ class InputComment extends Component {
 
     render() {
         return (
-            <div class="input-comment">
+            <div className="input-comment">
                 <input placeholder="Ajouter un commentaire..."/>
             </div>
         );

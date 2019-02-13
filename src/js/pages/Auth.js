@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import { withRouter } from 'react-router-dom';
 
 const LoginForm = ({ login, mdp, onLogin, handleChange }) => (
     <form
@@ -27,28 +28,38 @@ const LoginForm = ({ login, mdp, onLogin, handleChange }) => (
             value={mdp}
             onChange={handleChange("mdp")}
         />
-        <button type="submit">Login</button>
+        <button className="btn waves-effect waves-light" type="submit">Login</button>
     </form>
 );
 
-class About extends Component {
+class Auth extends Component {
 
     state = {
         login: "",
         mdp: "",
-        posts: []
+        posts: [],
+        msg: ''
     };
 
-    login = async (email, password) => {
 
+    login = async (email, password) => {
         try {
-            let res = await axios.post(this.props.apiURL+"login", {
+
+            axios.post(this.props.apiURL+"login", {
                 "email": email,
                 "password": password
+            }).then((response) => {
+                localStorage.setItem("token", response.data.token);
+                this.props.history.push("/");
+            }).catch((error) => {
+                if (error.response) {
+                    this.setState(state => ({
+                        msg: error.response.data.message
+                    }));
+                }
             });
-            localStorage.setItem("token", res.data.token);
-        } catch (err) {
-            console.error(err);
+        } catch(error) {
+            console.log(error);
         }
     };
 
@@ -67,10 +78,11 @@ class About extends Component {
                         login={this.state.login}
                         mdp={this.state.mdp}
                     />
+                    <div className="error-label">{this.state.msg}</div>
                 </div>
             </div>
         );
     }
 }
 
-export default About;
+export default withRouter(Auth);

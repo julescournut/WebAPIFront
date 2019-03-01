@@ -3,13 +3,12 @@
  */
 
 import axios from "axios";
+import Post from '../components/Post'
 import React, {Component} from 'react';
 
-export default class PersonList extends Component {
+export default class PostList extends Component {
 
-    state = {
-        persons: []
-    };
+    state = {};
 
     getPosts = async () => {
         try {
@@ -23,7 +22,6 @@ export default class PersonList extends Component {
                 url: "http://51.255.175.186:5000/api/v1/posts"
             };
             let res = await axios(options);
-            console.log(res);
             this.setState({ posts: res.data.posts });
         } catch (err) {
             console.log(err);
@@ -41,7 +39,10 @@ export default class PersonList extends Component {
                     {
                         this.state.posts.map(
                         post =>
-                            <li>{post.description}</li>
+                            <Post user={(post.author.ref!=null) ? post.author.ref.pseudo : "default"}
+                                  description={post.description}
+                                  image={post.image}
+                            />
                     )}
                 </ul>
             )

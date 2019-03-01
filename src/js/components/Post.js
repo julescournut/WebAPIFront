@@ -12,13 +12,12 @@ class Post extends Component {
             <div className="card">
                 <Avatar user={this.props.user} />
                 <div className="card-image post-img">
-                    <img src={this.props.imgURL} />
+                    <img src={this.props.image} />
                 </div>
                 <div className="card-content comment-container">
-                    <LikeBar nbLike={this.props.nbLike} date={this.props.date}/>
-                    {this.props.comments.map((comment) => <Comment user={comment.user}
-                                                                   content={comment.content} />)}
-                    <InputComment/>
+                    {/*<LikeBar/>*/}
+                    <Comment user={this.props.user} content={this.props.description} />
+                    {/*<InputComment/>*/}
                 </div>
             </div>
         );

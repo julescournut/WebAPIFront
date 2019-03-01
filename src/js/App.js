@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Home from './pages/Home'
 import About from './pages/About'
 import Auth from './pages/Auth'
+import CreateUser from './pages/CreateUSer'
+import CreatePost from './pages/CreatePost'
 import Header from './layout/Header'
 
 import '../sass/App.scss'
@@ -20,9 +22,11 @@ class App extends Component {
               <div>
                 <Header />
 
-                <Route exact path="/" render={() => <Home apiURL={apiUrl}/>}/>
-                <Route path="/profile" render={() => <About apiURL={apiUrl}/>}/>
+                <Route exact path="/" render={() => { if (localStorage.getItem("token") != null) { return <Home apiURL={apiUrl}/>} else {return <Auth apiURL={apiUrl}/>}}} />
+                <Route path="/profile" render={() => { if (localStorage.getItem("token") != null) { return <About apiURL={apiUrl}/>} else {return <Auth apiURL={apiUrl}/>}}}/>
                 <Route path="/auth" render={() => <Auth apiURL={apiUrl}/>}/>
+                <Route path="/createUser" render={() => <CreateUser apiURL={apiUrl}/>}/>
+                <Route path="/createPost" render={() => <CreatePost apiURL={apiUrl}/>}/>
               </div>
             </Router>
         );

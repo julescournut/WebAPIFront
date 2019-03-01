@@ -11,8 +11,8 @@ class LikeBar extends Component {
                     <li><a href="#"><i className="far fa-share-square"></i></a></li>
                 </ul>
                 <div className="like-bar-container__inline-content">
-                    <a href="#" className="like-counter">{this.props.nbLike} J'aime</a>
-                    <span className="post-date">il y a {this.props.date} jours</span>
+                    <a href="#" className="like-counter">127 J'aime</a>
+                    <span className="post-date">il y a 4 jours</span>
                 </div>
             </div>
         );

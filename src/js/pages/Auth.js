@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 const LoginForm = ({ login, mdp, onLogin, handleChange }) => (
     <form
@@ -18,17 +18,17 @@ const LoginForm = ({ login, mdp, onLogin, handleChange }) => (
     >
         <input
             type="text"
-            placeholder="login"
+            placeholder="E-mail"
             value={login}
             onChange={handleChange("login")}
         />
         <input
             type="password"
-            placeholder="password"
+            placeholder="Mot de passe"
             value={mdp}
             onChange={handleChange("mdp")}
         />
-        <button className="btn waves-effect waves-light" type="submit">Login</button>
+        <button className="btn waves-effect waves-light" type="submit">Se connecter</button>
     </form>
 );
 
@@ -51,6 +51,7 @@ class Auth extends Component {
             }).then((response) => {
                 localStorage.setItem("token", response.data.token);
                 this.props.history.push("/");
+                window.location.reload();
             }).catch((error) => {
                 if (error.response) {
                     this.setState(state => ({
@@ -79,6 +80,9 @@ class Auth extends Component {
                         mdp={this.state.mdp}
                     />
                     <div className="error-label">{this.state.msg}</div>
+                    <div className="">
+                        <Link to="/createUser"><span>Créer un compte</span></Link>
+                    </div>
                 </div>
             </div>
         );

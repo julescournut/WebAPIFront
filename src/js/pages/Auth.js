@@ -13,7 +13,8 @@ const LoginForm = ({ login, mdp, onLogin, handleChange }) => (
             flexDirection: "column",
             maxWidth: "80vw",
             margin: "auto",
-            marginTop: "20px"
+            marginTop: "20px",
+
         }}
     >
         <input
@@ -28,7 +29,7 @@ const LoginForm = ({ login, mdp, onLogin, handleChange }) => (
             value={mdp}
             onChange={handleChange("mdp")}
         />
-        <button className="btn waves-effect waves-light" type="submit">Se connecter</button>
+        <button className="btn margin-button waves-effect waves-light" type="submit">Se connecter</button>
     </form>
 );
 
@@ -45,7 +46,7 @@ class Auth extends Component {
     login = async (email, password) => {
         try {
 
-            axios.post(this.props.apiURL+"login", {
+            axios.post(this.props.apiUrl+"login", {
                 "email": email,
                 "password": password
             }).then((response) => {
@@ -73,6 +74,9 @@ class Auth extends Component {
         return (
             <div className="container" >
                 <div className="container login-container">
+                    <div className="auth-title">
+                        <h3>Instagramzz</h3>
+                    </div>
                     <LoginForm
                         handleChange={this.handleChange}
                         onLogin={this.login}
@@ -80,9 +84,10 @@ class Auth extends Component {
                         mdp={this.state.mdp}
                     />
                     <div className="error-label">{this.state.msg}</div>
-                    <div className="">
-                        <Link to="/createUser"><span>Créer un compte</span></Link>
-                    </div>
+                </div>
+
+                <div className="create-account-button">
+                    <span>Pas encore de compte ? <Link to="/createUser">Inscrivez vous </Link></span>
                 </div>
             </div>
         );

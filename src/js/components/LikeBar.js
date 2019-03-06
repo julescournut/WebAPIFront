@@ -6,12 +6,12 @@ class LikeBar extends Component {
         return (
             <div className="like-bar-container">
                 <ul className="social-button-container">
-                    <li><a href="#"><i className="far fa-heart"></i></a></li>
-                    <li><a href="#"><i className="far fa-comment"></i></a></li>
-                    <li><a href="#"><i className="far fa-share-square"></i></a></li>
+                    <li><button className="no-style-button"><i className="far fa-heart"></i></button></li>
+                    <li><button className="no-style-button"><i className="far fa-comment"></i></button></li>
+                    <li><button className="no-style-button"><i className="far fa-share-square"></i></button></li>
                 </ul>
                 <div className="like-bar-container__inline-content">
-                    <a href="#" className="like-counter">127 J'aime</a>
+                    <button className="like-counter no-style-button">127 J'aime</button>
                     <span className="post-date">il y a 4 jours</span>
                 </div>
             </div>

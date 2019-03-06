@@ -5,6 +5,7 @@
 
 @import
 'base/base',
+'base/_colors',
 'base/fonts',
 'base/typography',
 'base/helpers';
@@ -25,4 +26,5 @@
 @import
 'pages/about',
 'pages/home',
+'pages/create-post',
 'pages/auth';

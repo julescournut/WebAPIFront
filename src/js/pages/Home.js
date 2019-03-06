@@ -10,8 +10,8 @@ class Home extends Component {
             <div className="container post-container">
                 <div className="row">
                     <div className="col s12 m9">
-                        <Link to="/createPost"><span>+ Ajouter un post</span></Link>
-                        <PostList/>
+                        <Link className="btn waves-effect waves-ligh add-post-btn" to="/createPost">+ Ajouter un post</Link>
+                        <PostList apiUrl={this.props.apiUrl} isProfile={false}/>
                     </div>
                 </div>
             </div>

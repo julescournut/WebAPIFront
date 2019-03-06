@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import { withRouter } from 'react-router-dom';
 
-const AddPostForm = ({ image, description, addPost, handleChange }) => (
+const AddPostForm = ({ image, description, addPost, handleChange, fileChangedHandler}) => (
     <form
         onSubmit={(e) => {
             e.preventDefault();
@@ -21,10 +21,8 @@ const AddPostForm = ({ image, description, addPost, handleChange }) => (
         }}
     >
         <input
-            type="text"
-            placeholder="Lien vers l'image"
-            value={image}
-            onChange={handleChange("image")}
+            type="file"
+            onChange={fileChangedHandler}
         />
         <input
             type="text"
@@ -32,14 +30,14 @@ const AddPostForm = ({ image, description, addPost, handleChange }) => (
             value={description}
             onChange={handleChange("description")}
         />
-        <button className="btn waves-effect waves-light" type="submit">Ajouter</button>
+        <button className="btn waves-effect waves-light margin-button" type="submit">Ajouter</button>
     </form>
 );
 
 class CreatePost extends Component {
 
     state = {
-        image: "",
+        image: null,
         description: "",
     };
 
@@ -47,28 +45,46 @@ class CreatePost extends Component {
         this.setState({ [name]: event.target.value });
     };
 
+    fileChangedHandler = event => {
+        this.setState({ image: event.target.files[0] })
+    };
+
     addpost = async (image, description) => {
         try {
             const access_token = localStorage.getItem("token");
+            let bodyFormData = new FormData();
+            bodyFormData.append("image", image);
             axios.post(
-                this.props.apiURL+"posts",
-                {
-                    "image": image,
-                    "description": description,
-                    "author": {
-                        "name": "default",
-                        "ref": null
-                    }
-                },
+                this.props.apiUrl +"upload/image",
+                bodyFormData,
                 {
                     headers: {
                         Authorization: `${access_token}`,
-                        "Content-Type": "application/json"
+                        "Content-Type": "multipart/form-data"
                     }
                 }
             ).then((response) => {
-                console.log(response.data);
-                this.props.history.push("/");
+                axios.post(
+                    this.props.apiUrl +"posts",
+                    {
+                        "image": response.data.filename,
+                        "description": description,
+                    },
+                    {
+                        headers: {
+                            Authorization: `${access_token}`,
+                            "Content-Type": "application/json"
+                        }
+                    }
+                ).then(() => {
+                    this.props.history.push("/");
+                }).catch((error) => {
+                    if (error.response) {
+                        this.setState(state => ({
+                            msg: error.response.data.message
+                        }));
+                    }
+                })
             }).catch((error) => {
                 if (error.response) {
                     this.setState(state => ({
@@ -84,10 +100,13 @@ class CreatePost extends Component {
     render() {
         return (
             <div className="container" >
-                <h1>Ajouter un post</h1>
                 <div className="container login-container">
+                    <div className="add-post-title">
+                        <h4>Créer un post</h4>
+                    </div>
                     <AddPostForm
                         handleChange={this.handleChange}
+                        fileChangedHandler={this.fileChangedHandler}
                         addPost={this.addpost}
                         image={this.state.image}
                         description={this.state.description}

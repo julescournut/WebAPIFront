@@ -44,7 +44,7 @@ const SigninForm = ({ name, pseudo, email, mdp, onSignin, handleChange }) => (
             value={mdp}
             onChange={handleChange("mdp")}
         />
-        <button className="btn waves-effect waves-light" type="submit">S'inscrire</button>
+        <button className="btn waves-effect waves-light auth-button margin-button" type="submit">S'inscrire</button>
     </form>
 );
 
@@ -89,8 +89,10 @@ class CreateUSer extends Component {
     render() {
         return (
             <div className="container" >
-                <h1>Créer un compte</h1>
                 <div className="container login-container">
+                    <div className="auth-title">
+                        <h3>Instagramzz</h3>
+                    </div>
                     <SigninForm
                         handleChange={this.handleChange}
                         onSignin={this.signin}
@@ -100,7 +102,9 @@ class CreateUSer extends Component {
                         mdp={this.state.mdp}
                     />
                     <div className="error-label">{this.state.msg}</div>
-                    <Link to="/auth"><span>retour</span></Link>
+                </div>
+                <div className="create-account-button">
+                    <span>Vous avez déjà un compte ? <Link to="/auth">Connectez vous </Link></span>
                 </div>
             </div>
         );

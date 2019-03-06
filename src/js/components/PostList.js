@@ -18,9 +18,13 @@ export default class PostList extends Component {
                 headers: {
                     Authorization: `${access_token}`,
                     "Content-Type": "application/json"
-                },
-                url: "http://51.255.175.186:5000/api/v1/posts"
+                }
             };
+            if (this.props.isProfile) {
+                options.url = this.props.apiUrl + "posts/user"
+            } else {
+                options.url = this.props.apiUrl + "posts"
+            }
             let res = await axios(options);
             this.setState({ posts: res.data.posts });
         } catch (err) {
@@ -38,8 +42,11 @@ export default class PostList extends Component {
                 <ul>
                     {
                         this.state.posts.map(
-                        post =>
-                            <Post user={(post.author.ref!=null) ? post.author.ref.pseudo : "default"}
+                            (post, i) =>
+                            <Post key={i}
+                                  apiUrl= {this.props.apiUrl}
+                                  user={(post.author.ref!=null) ? post.author.ref.pseudo : "default"}
+                                  date={post.date}
                                   description={post.description}
                                   image={post.image}
                             />
@@ -48,7 +55,7 @@ export default class PostList extends Component {
             )
         } else {
             return (
-                <ul> Invalid Token
+                <ul> Chargement...
                 </ul>
             )
         }

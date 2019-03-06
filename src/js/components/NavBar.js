@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class NavBar extends Component {
 
@@ -26,7 +26,7 @@ class NavBar extends Component {
                             </span></Link>
                             <ul id="nav-mobile" className="right hide-on-med-and-down">
                                 <li><Link to="/profile"><span><i className="far fa-user"></i></span></Link></li>
-                                <li><a onClick={this.signout}><i className="fas fa-sign-out-alt"></i></a></li>
+                                <li><button className="no-style-button" onClick={this.signout}><i className="fas fa-sign-out-alt"></i></button></li>
                             </ul>
                         </div>
                     </nav>

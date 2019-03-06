@@ -23,6 +23,11 @@
       background-color: transparent;
     }
   }
+  #nav-mobile i {
+      @include respond-to(xs) {
+        font-size: 18px;
+      }
+  }
 }
 
 .navbar-fixed nav {

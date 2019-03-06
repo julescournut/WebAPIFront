@@ -24,8 +24,8 @@ class NavBar extends Component {
                                 Instagramzz
                                 <i className="fab fa-instagram instagram-logo"></i>
                             </span></Link>
-                            <ul id="nav-mobile" className="right hide-on-med-and-down">
-                                <li><Link to="/profile"><span><i className="far fa-user"></i></span></Link></li>
+                            <ul id="nav-mobile" className="right">
+                                <li><Link to="/profile"><span><i className="fas fa-user"></i></span></Link></li>
                                 <li><button className="no-style-button" onClick={this.signout}><i className="fas fa-sign-out-alt"></i></button></li>
                             </ul>
                         </div>

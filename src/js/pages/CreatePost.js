@@ -74,7 +74,7 @@ class CreatePost extends Component {
                         }
                     }
                 ).then(() => {
-                    this.props.history.push("/auth");
+                    this.props.history.push("/");
                 }).catch((error) => {
                     if (error.response) {
                         this.setState(state => ({

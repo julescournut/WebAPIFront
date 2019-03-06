@@ -1,11 +1,41 @@
 import React, { Component } from 'react';
+import axios from "axios";
 
 class Avatar extends Component {
+
+    state = {};
+
+    getImage = async () => {
+        try {
+            if (this.props.avatar) {
+                const access_token = localStorage.getItem("token");
+                const options = {
+                    method: "get",
+                    url: this.props.apiUrl + "download/image/" + this.props.avatar,
+                    headers: {
+                        Authorization: `${access_token}`,
+                        "Content-Type": "application/json"
+                    }
+                };
+                let res = await axios(options);
+                this.setState({ image: res.data });
+            } else {
+                this.setState({image: "https://www.gomuscu.org/public/uploads/avatars/default.jpg"})
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    componentDidMount() {
+        this.getImage();
+    }
+
 
     render() {
         return (
             <span className="card-content avatar-container">
-                <img alt="not found" className="avatar-container__img" src="https://thumbs.dreamstime.com/z/illustration-cr%C3%A9ative-de-vecteur-texte-d-attente-profil-avatar-d%C3%A9faut-isolement-sur-le-fond-calibre-gris-mois-blanc-photo-107388687.jpg"/>
+                <img alt="not found" className="avatar-container__img" src={this.state.image}/>
                 <span className="avatar-container__name">{this.props.user}</span>
             </span>
         );

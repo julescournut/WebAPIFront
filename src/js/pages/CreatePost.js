@@ -21,10 +21,13 @@ const AddPostForm = ({ image, description, addPost, handleChange, fileChangedHan
         }}
     >
         <input
+            required="required"
+            className="import-file-button"
             type="file"
             onChange={fileChangedHandler}
         />
         <input
+            required="required"
             type="text"
             placeholder="La description de l'image"
             value={description}
@@ -56,13 +59,7 @@ class CreatePost extends Component {
             bodyFormData.append("image", image);
             axios.post(
                 this.props.apiUrl +"upload/image",
-                bodyFormData,
-                {
-                    headers: {
-                        Authorization: `${access_token}`,
-                        "Content-Type": "multipart/form-data"
-                    }
-                }
+                bodyFormData
             ).then((response) => {
                 axios.post(
                     this.props.apiUrl +"posts",
@@ -77,7 +74,7 @@ class CreatePost extends Component {
                         }
                     }
                 ).then(() => {
-                    this.props.history.push("/");
+                    this.props.history.push("/auth");
                 }).catch((error) => {
                     if (error.response) {
                         this.setState(state => ({

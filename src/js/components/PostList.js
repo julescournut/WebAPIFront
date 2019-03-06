@@ -49,6 +49,7 @@ export default class PostList extends Component {
                                   date={post.date}
                                   description={post.description}
                                   image={post.image}
+                                  avatar={post.author.ref.image}
                             />
                     )}
                 </ul>

@@ -36,7 +36,7 @@ class Post extends Component {
         let d = new Date(this.props.date);
         return (
             <div className="card">
-                <Avatar user={this.props.user} />
+                <Avatar apiUrl={this.props.apiUrl} user={this.props.user} avatar={this.props.avatar} />
                 <div className="card-image post-img">
                     <img src={this.state.image} alt="not found" />
                 </div>

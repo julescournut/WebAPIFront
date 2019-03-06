@@ -21,6 +21,21 @@ class About extends Component {
             };
             let res = await axios(options);
             this.setState({ user: res.data.user });
+            if (this.state.user.image) {
+                const access_token = localStorage.getItem("token");
+                const options = {
+                    method: "get",
+                    url: this.props.apiUrl + "download/image/" + this.state.user.image,
+                    headers: {
+                        Authorization: `${access_token}`,
+                        "Content-Type": "application/json"
+                    }
+                };
+                let res = await axios(options);
+                this.setState({ image: res.data });
+            } else {
+                this.setState({image: "https://www.gomuscu.org/public/uploads/avatars/default.jpg"})
+            }
         } catch (err) {
             console.log(err);
         }
@@ -38,7 +53,7 @@ class About extends Component {
         return (
             <div className="container post-container">
                 <div className="row profile-container">
-                    <img alt="not found" className="profile-img col" src="https://thumbs.dreamstime.com/z/illustration-cr%C3%A9ative-de-vecteur-texte-d-attente-profil-avatar-d%C3%A9faut-isolement-sur-le-fond-calibre-gris-mois-blanc-photo-107388687.jpg"/>
+                    <img alt="not found" className="profile-img col" src={this.state.image}/>
                     <h4 className="col">{name}</h4>
                 </div>
                 <div className="row">
